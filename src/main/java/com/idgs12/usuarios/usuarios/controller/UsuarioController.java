@@ -59,6 +59,14 @@ public class UsuarioController {
         UsuarioEntity updated = usuarioService.saveUsuarioConProgramas(usuarioDTO);
         return ResponseEntity.ok(updated);
     }
+    //Funcionalidad de habilitar --Maria Fernanda Rosas Briones IDGS12
+    @PutMapping("/habilitar/{id}")
+    public ResponseEntity<String> habilitarUsuario(@PathVariable int id) {
+        boolean resultado = usuarioService.habilitarUsuario(id);
+        if (resultado) {
+            return ResponseEntity.ok("Usuario habilitado correctamente");
+        } else {
+            return ResponseEntity.badRequest().body("No se encontró el usuario");
 
     // Funcionalidad para deshabilitar un usuario
     @Transactional

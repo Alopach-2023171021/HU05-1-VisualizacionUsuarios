@@ -99,6 +99,11 @@ public class UsuarioService {
 
         return savedUsuario;
     }
+    //Funcionalidad de habilitar --Maria Fernanda Rosas Briones IDGS12
+    @Transactional
+    public boolean habilitarUsuario(int id) {
+        UsuarioEntity usuario = usuarioRepository.findById(id).orElse(null);
+
 
     // Método para deshabilitar usuario
     @Transactional
@@ -108,6 +113,11 @@ public class UsuarioService {
             return false;
         }
 
+        usuario.setEstatus(1); // Habilitado
+        usuarioRepository.save(usuario);
+
+        return true;
+    }    
         usuario.setActivo(false); // Cambiamos el estado a false
         usuarioRepository.save(usuario);
 
